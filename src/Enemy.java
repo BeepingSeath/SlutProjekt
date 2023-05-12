@@ -23,7 +23,9 @@ public class Enemy {
         return HP;
     }
 
-    public int getXP() {
-        return XP;
+    public int getXP() { return XP; }
+
+    public void TakeDamage(int DMG){
+        this.HP -= DMG;
     }
 }

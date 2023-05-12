@@ -1,30 +1,38 @@
+import javax.swing.*;
+
 public class Player {
-    int DMG = 2;
+    int DMG;
     int HP;
+    int XP;
+    public Player() {
+        this.DMG = 2;
+        this.HP = 10;
+        this.XP = 0;
+    }
+
     public void TakeDamage(int DMG){
         this.HP -= DMG;
     }
 
-    public Player() {
-        this.HP = 5 + (int)(Math.random() * (( 15 - 5 ) + 1));
-    }
-
     public static void main(String[] args) {
-        Player p1 = new Player();
-        Slime slime = new Slime();
-        while (p1.HP > 0 && slime.getHP() > 0) {
-            slime.TakeDamage(p1.DMG);
-            p1.TakeDamage(slime.getDMG());
-            System.out.println("Player HP = " + p1.HP + "     Enemy Hp = " + slime.getHP());
-        }
-        if (p1.HP > slime.getHP()) {
-            System.out.println("You Win!");
-        }
-        else if (p1.HP < slime.getHP()) {
-            System.out.println("You Lose");
-        }
-        else {
-            System.out.println("It's a draw, you both die");
-        }
+        Player player = new Player();
+        Slime enemy = new Slime();
+        System.out.println(player.XP);
+        String PlayingQuestion;
+            while (player.HP > 0 && enemy.getHP() > 0) {
+                enemy.TakeDamage(player.DMG);
+                player.TakeDamage(enemy.getDMG());
+                System.out.println("Player HP = " + player.HP + "     Enemy Hp = " + enemy.getHP());
+            }
+            if (player.HP > enemy.getHP()) {
+                System.out.println("You Win!");
+                player.XP += enemy.getXP();
+                System.out.println(player.XP);
+            } else if (player.HP < enemy.getHP()) {
+                System.out.println("You Lose");
+            } else {
+                System.out.println("It's a draw, you both die");
+            }
+
     }
 }

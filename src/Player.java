@@ -21,6 +21,7 @@ public class Player {
                     "jdbc:mysql://db.umea-ntig.se/te20","te20","HeZs7Ge7evA2");
             Statement stmt=con.createStatement();
             ResultSet rs=stmt.executeQuery("select * from srbEvents");
+            rs.next();
             System.out.println(rs.getString("ChoiceA"));
         }catch(Exception e){ System.out.println(e);}
     Player player = new Player();

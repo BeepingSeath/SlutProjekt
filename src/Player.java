@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.sql.*;
 
 public class Player {
     int DMG;
@@ -15,8 +16,16 @@ public class Player {
     }
 
     public static void main(String[] args) {
-        Player player = new Player();
+        try{
+            Connection con=DriverManager.getConnection(
+                    "jdbc:mysql://db.umea-ntig.se/te20","te20","HeZs7Ge7evA2");
+            Statement stmt=con.createStatement();
+            ResultSet rs=stmt.executeQuery("select * from srbEvents");
+            System.out.println(rs.getString("ChoiceA"));
+        }catch(Exception e){ System.out.println(e);}
+    Player player = new Player();
         Slime enemy = new Slime();
+
         System.out.println(player.XP);
         String PlayingQuestion;
             while (player.HP > 0 && enemy.getHP() > 0) {

@@ -17,13 +17,22 @@ public class Player {
 
     public static void main(String[] args) {
         env env = new env();
+        String eventFight = "";
         try{
             Connection con=DriverManager.getConnection(
                     "jdbc:mysql://db.umea-ntig.se/te20",env.getUser(),env.getPassword());
             Statement stmt=con.createStatement();
             ResultSet rs=stmt.executeQuery("select * from srbEvents");
             rs.next();
-            System.out.println(rs.getString("ChoiceA"));
+            JFrame frame = new JFrame();
+            String[] options = new String[2];
+            options[0] = new String(rs.getString("ChoiceA"));
+            options[1] = new String(rs.getString("ChoiceB"));
+            int event = JOptionPane.showOptionDialog(frame.getContentPane(), "What do you want to fight?", "Choose", 0,JOptionPane.INFORMATION_MESSAGE, null, options, null);
+            if (event == 0) {
+                eventFight = rs.getString("ChoiceAFight");
+            }
+            System.out.println(eventFight);
         }catch(Exception e){ System.out.println(e);}
     Player player = new Player();
         Slime enemy = new Slime();

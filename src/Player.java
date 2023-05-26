@@ -16,9 +16,10 @@ public class Player {
     }
 
     public static void main(String[] args) {
+        env env = new env();
         try{
             Connection con=DriverManager.getConnection(
-                    "jdbc:mysql://db.umea-ntig.se/te20","te20","HeZs7Ge7evA2");
+                    "jdbc:mysql://db.umea-ntig.se/te20",env.getUser(),env.getPassword());
             Statement stmt=con.createStatement();
             ResultSet rs=stmt.executeQuery("select * from srbEvents");
             rs.next();
